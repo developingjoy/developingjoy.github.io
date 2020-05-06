@@ -1,0 +1,42 @@
+Proposal for ongoing management of an economy with conditions based on testing - managing disease economically
+
+
+We'll look back on COVID-19.  We'll ask how it happened and how it could have been prevented.  We'll debate how to avoid pandemics in the future.
+
+
+Observations:
+* We do not yet have a proven vaccine for SARS-CoV-2.
+* We expect future pandemics from coronaviruses, as well as the ongoing impact of influenza.
+* Social distancing precludes economic activity and incurs permanent economic damage on businesses and individuals.
+* Diseases can spread between both people and animals without observable symptoms.
+* It takes less time to develop tests for the presence of a virus or antibodies than it does to develop vaccines.
+* Vaccines do not work for all patients or against all variants of a disease.  Vaccines have side effects.
+* Diseases travel between geographies over the course of time.  The prevalence of a disease in a specific geography varies over time.
+
+
+Proposal:
+
+* Give governments the power to establish and modify minimal health requirements for individuals or their animals to engage in activities including entering establishments, joining public gatherings, or traveling through a jurisdiction.
+* Give business owners and event organizers the right to verify compliance by employees and guests.  Allow business owners and event organizers to present and enforce stricter requirements than required within the local jurisdiction at that time.
+* Requirements could include:
+** within a specific amount of time, receiving a negative result from specific tests for specific diseases
+** within a specific amount of time, receiving a positive result from specific tests for specific antibodies
+** within a specific amount of time, receiving specific vaccines for specific diseases
+* Requirements could include various combinations of tests or vaccinations.
+* Allow for verification of requirements:
+** electronically, without physical contact between verifier and visitor
+** without personal identification
+
+* Establish a crime to intentionally violate the requirements.
+* Establish a crime for a business owner or event organizer to intentionally not fully enforce requirements presented to visitors.
+* Establish a crime if a verifier intentionally retains personal information beyond a visitor's visit.
+
+
+Requirements could be organized by threat level and class of establishment or public gathering and shared across jurisdicitions, with local governments setting requirements based on local conditions.
+
+
+Economies could be opened and remain open through pandemics, albeit with varying and at times strict conditions.
+
+Fitness centers and offices could reopen and remain open.  Shoppers could shop, travelers could travel, and worshipers could worship, after managing the risk of contagion.
+
+The requirements would bind economic incentives for the creation and production of tests as an ongoing cost of economic activities.
