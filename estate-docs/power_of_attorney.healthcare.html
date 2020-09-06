@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+	<TITLE>Healthcare Power of Attorney</TITLE>
+
+	<SCRIPT src="https://cdn.jsdelivr.net/npm/vue"></SCRIPT>
+
+	<STYLE>
+		#app {
+			max-width: 900px;
+		}
+
+		@media print {
+		  footer {page-break-after: always;}
+		}
+
+		input[type="radio"]:checked+label {
+			font-weight: bold;
+		}
+
+/*		.selected {
+			font-weight: bold;
+		}
+
+		.unselected {
+			text-decoration: line-through;
+		}
+*/	</STYLE>
+
+</HEAD>
+
+
+<BODY>
+
+	<DIV id="app">
+
+		<P align=right><INPUT v-model="client.name" PLACEHOLDER="client's full name"></P>
+
+
+		<H4>NOTICE TO THE INDIVIDUAL SIGNING THE POWER OF ATTORNEY FOR HEALTH CARE</H4>
+
+		<P>No one can predict when a serious illness or accident might occur.  When it does, you may need someone else to speak or make health care decisions for you.  If you plan now, you can increase the chances that the medical treatment you get will be the treatment you want.</P>
+		<P>In Illinois, you can choose someone to be your health care agent.  Your agent is the person you trust to make health care decisions for you if you are unable or do not want to make them yourself.  These decisions should be based on your personal values and wishes.</P>
+		<P>It is important to put your choice of agent in writing.  The written form is often called an advance directive.  You may use this form or another form, as long as it meets the legal requirements of Illinois.  There are many written and on-line resources to guide you and your loved ones in having a conversation about these issues.  You may find it helpful to look at these resources while thinking about and discussing your advance directive.</P>
+
+		<H4>WHAT ARE THE THINGS I WANT MY HEALTH CARE AGENT TO KNOW?</H4>
+
+		<P>The selection of your agent should be considered carefully, as your agent will have the ultimate decision-making authority once this document goes into effect, in most instances after you are no longer able to make your own decisions.  While the goal is for your agent to make decisions in keeping with your preferences and in the majority of circumstances that is what happens, please know that the law does allow your agent to make decisions to direct or refuse health care interventions or withdraw treatment.  Your agent will need to think about conversations you have had, your personality, and how you handled important health care issues in the past.  Therefore, it is important to talk with your agent and your family about such things as:</P>
+		<OL TYPE="i">
+			<LI>What is most important to you in your life?</LI>
+			<LI>How important is it to you to avoid pain and suffering?</LI>
+			<LI>If you had to choose, is it more important to you to live as long as possible, or to avoid prolonged suffering or disability?</LI>
+			<LI>Would you rather be at home or in a hospital for the last days or weeks of your life?</LI>
+			<LI>Do you have religious, spiritual, or cultural beliefs that you want your agent and others to consider?</LI>
+			<LI>Do you wish to make a significant contribution to medical science after your death through organ or whole body donation?</LI>
+			<LI>Do you have an existing advance directive, such as a living will, that contains your specific wishes about health care that is only delaying your death?  If you have another advance directive, make sure to discuss with your agent the directive and the treatment decisions contained within that outline your preferences.  Make sure that your agent agrees to honor the wishes expressed in your advance directive.</LI>
+    	</OL>
+
+		<H4>WHAT KIND OF DECISIONS CAN MY AGENT MAKE?</H4>
+
+		<P>If there is ever a period of time when your physician determines that you cannot make your own health care decisions, or if you do not want to make your own decisions, some of the decisions your agent could make are to:</P>
+		<OL TYPE="i">
+			<LI>talk with physicians and other health care providers about your condition.</LI>
+			<LI>see medical records and approve who else can see them.</LI>
+			<LI>give permission for medical tests, medicines, surgery, or other treatments.</LI>
+			<LI>choose where you receive care and which physicians and others provide it.</LI>
+			<LI>decide to accept, withdraw, or decline treatments designed to keep you alive if you
+			are near death or not likely to recover. You may choose to include guidelines and/or restrictions to your agent's authority.</LI>
+			<LI>agree or decline to donate your organs or your whole body if you have not already made this decision yourself.  This could include donation for transplant, research, and/or education.  You should let your agent know whether you are registered as a donor in the First Person Consent registry maintained by the Illinois Secretary of State or whether you have agreed to donate your whole body for medical research and/or education.</LI>
+			<LI>decide what to do with your remains after you have died, if you have not already made plans.</LI>
+			<LI>talk with your other loved ones to help come to a decision (but your designated agent will have the final say over your other loved ones).</LI>
+		</OL>
+		<P>Your agent is not automatically responsible for your health care expenses.</P>
+
+		<H4>WHOM SHOULD I CHOOSE TO BE MY HEALTH CARE AGENT?</H4>
+
+		<P>You can pick a family member, but you do not have to.  Your agent will have the responsibility to make medical treatment decisions, even if other people close to you might urge a different decision.  The selection of your agent should be done carefully, as he or she will have ultimate decision-making authority for your treatment decisions once you are no longer able to voice your preferences. Choose a family member, friend, or other person who:</P>
+		<OL TYPE="i">
+			<LI>is at least 18 years old;</LI>
+			<LI>knows you well;</LI>
+			<LI>you trust to do what is best for you and is willing to carry out your wishes, even if he or she may not agree with your wishes;</LI>
+			<LI>would be comfortable talking with and questioning your physicians and other health care providers;</LI>
+			<LI>would not be too upset to carry out your wishes if you became very sick; and</LI>
+			<LI>can be there for you when you need it and is willing to accept this important role.</LI>
+		</OL>
+
+		<H4>WHAT IF MY AGENT IS NOT AVAILABLE OR IS UNWILLING TO MAKE DECISIONS FOR ME?</H4>
+
+		<P>If the person who is your first choice is unable to carry out this role, then the second agent you chose will make the decisions; if your second agent is not available, then the third agent you chose will make the decisions.  The second and third agents are called your successor agents and they function as back-up agents to your first choice agent and may act only one at a time and in the order you list them.</P>
+
+		<H4>WHAT WILL HAPPEN IF I DO NOT CHOOSE A HEALTH CARE AGENT?</H4>
+
+		<P>If you become unable to make your own health care decisions and have not named an agent in writing, your physician and other health care providers will ask a family member, friend, or guardian to make decisions for you.  In Illinois, a law directs which of these individuals will be consulted.  In that law, each of these individuals is called a surrogate.</P>
+		<P>There are reasons why you may want to name an agent rather than rely on a surrogate:</P>
+
+		<OL TYPE="i">
+			<LI>The person or people listed by this law may not be who you would want to make decisions for you.</LI>
+			<LI>Some family members or friends might not be able or willing to make decisions as you would want them to.</LI>
+			<LI>Family members and friends may disagree with one another about the best decisions.</LI>
+			<LI>Under some circumstances, a surrogate may not be able to make the same kinds of decisions that an agent can make.</LI>
+		</OL>
+
+		<H4>WHAT IF THERE IS NO ONE AVAILABLE WHOM I TRUST TO BE MY AGENT?</H4>
+
+		<P>In this situation, it is especially important to talk to your physician and other health care providers and create written guidance about what you want or do not want, in case you are ever critically ill and cannot express your own wishes.  You can complete a living will.  You can also write your wishes down and/or discuss them with your physician or other health care provider and ask him or her to write it down in your chart.  You might also want to use written or on-line resources to guide you through this process.</P>
+
+		<H4>WHAT DO I DO WITH THIS FORM ONCE I COMPLETE IT?</H4>
+
+		<P>Follow these instructions after you have completed the form:</P>
+
+		<OL TYPE="i">
+			<LI>Sign the form in front of a witness. See the form for a list of who can and cannot witness it.</LI>
+			<LI>Ask the witness to sign it, too.</LI>
+			<LI>There is no need to have the form notarized.</LI>
+			<LI>Give a copy to your agent and to each of your successor agents.</LI>
+			<LI>Give another copy to your physician.</LI>
+			<LI>Take a copy with you when you go to the hospital.</LI>
+			<LI>Show it to your family and friends and others who care for you.</LI>
+		</OL>
+
+		<H4>WHAT IF I CHANGE MY MIND?</H4>
+
+		<P>You may change your mind at any time.  If you do, tell someone who is at least 18 years old that you have changed your mind, and/or destroy your document and any copies.  If you wish, fill out a new form and make sure everyone you gave the old form to has a copy of the new one, including, but not limited to, your agents and your physicians.</P>
+
+		<H4>WHAT IF I DO NOT WANT TO USE THIS FORM?</H4>
+
+		<P>In the event you do not want to use the Illinois statutory form provided here, any document you complete must be executed by you, designate an agent who is over 18 years of age and not prohibited from serving as your agent, and state the agent's powers, but it need not be witnessed or conform in any other respect to the statutory health care power.</P>
+		<P>If you have questions about the use of any form, you may want to consult your physician, other health care provider, and/or an attorney.</P>
+
+		<FOOTER></FOOTER>
+
+
+		<H3 align=center>MY POWER OF ATTORNEY FOR HEALTH CARE</H3>
+
+		<P>THIS POWER OF ATTORNEY REVOKES ALL PREVIOUS POWERS OF ATTORNEY FOR HEALTH CARE.<BR/>
+		(You must sign this form and a witness must also sign it before it is valid)</P>
+
+		<P>My name: <INPUT v-model="client.name" PLACEHOLDER="client's full name"><BR/>
+		My address: <INPUT v-model="client.address" PLACEHOLDER="client's address"><BR/></P>
+
+		<P>
+			I WANT THE FOLLOWING PERSON TO BE MY HEALTH CARE AGENT:<BR/>
+			(an agent is your personal representative under state and federal law)<BR/>
+			<SELECT v-model="agent.relationship.boolean">
+				<OPTION value=FALSE></OPTION>
+				<OPTION value=TRUE>my {{ agent.relationship.type }}, </OPTION>
+			</SELECT>
+			<INPUT v-model="agent.name" PLACEHOLDER="agent's full name">
+			currently residing
+			<SELECT v-model="agent.location.granularity">
+				<OPTION value="address">at</OPTION>
+				<OPTION value="city">in</OPTION>
+			</SELECT>
+			<INPUT v-model="agent.location.value" PLACEHOLDER="agent's address">
+			with a phone number of <INPUT v-model="agent.phone_number" PLACEHOLDER="agent's phone number">.
+		</P>
+
+		<P>If a guardian of my person is to be appointed, I nominate the agent acting under this power of attorney as guardian.</P>
+
+		<BR/>
+
+		<P>SUCCESSOR HEALTH CARE AGENT(S) (optional):<BR/>
+		If the agent I selected is unable or does not want to make health care decisions for me, then I request
+the person(s) I name below to be my successor health care agent(s). Only one person at a time can serve as my agent (add another page if you want to add more successor agent names):</P>
+
+		<OL>
+			<successor-agent
+				v-for="agent in successor_agents"
+				v-bind:agent="agent"
+			></successor-agent>
+		</OL>
+
+		<H4 v-if="successor_agents.length > 0">additional successor agent:</H4>
+		<FORM>
+			<INPUT v-model="additional_successor_agent.name" PLACEHOLDER="successor's full name">
+			currently residing
+			<SELECT v-model="additional_successor_agent.location.granularity">
+				<OPTION value="address">at</OPTION>
+				<OPTION value="city">in</OPTION>
+			</SELECT>
+			<INPUT v-model="additional_successor_agent.location.value" PLACEHOLDER="successor's address">
+			with a phone number of <INPUT v-model="additional_successor_agent.phone_number" PLACEHOLDER="phone number">.
+			<INPUT TYPE="button" Value="add" v-on:click="processSuccessorAgent">
+		</FORM>
+
+		<BR/>
+
+		<P>MY AGENT CAN MAKE HEALTH CARE DECISIONS FOR ME, INCLUDING:</P>
+		<OL type="i">
+			<LI>Deciding to accept, withdraw or decline treatment for any physical or mental condition of mine,
+including life-and-death decisions.</LI>
+			<LI>Agreeing to admit me to or discharge me from any hospital, home, or other institution,
+including a mental health facility.</LI>
+			<LI>Having complete access to my medical and mental health records, and sharing them with
+others as needed, including after I die.</LI>
+			<LI>Carrying out the plans I have already made, or, if I have not done so, making decisions about
+my body or remains, including organ, tissue or whole body donation, autopsy, cremation, and burial.</LI>
+		</OL>
+		<P>The above grant of power is intended to be as broad as possible so that my agent will have the
+authority to make any decision I could make to obtain or terminate any type of health care, including withdrawal of nutrition and hydration and other life-sustaining measures.</P>
+
+		<P>A copy of this Power of Attorney that is certified by my agent or by my attorney as a true copy of the original shall be deemed an original.</P>
+
+		<P>
+			<INPUT TYPE="checkbox" v-model="options.minors"> <LABEL v-if="!options.minors">&lt;minor/guardian&gt;</LABEL>
+
+			<SPAN v-if="options.minors">My agent shall have all powers a parent may have to control or consent to health care for a minor child or for a person for whom I am guardian, if I am not able.</SPAN>
+		</P>
+
+		<BR/>
+
+		<FORM>
+			<P>I AUTHORIZE MY AGENT TO:</P>
+
+			<INPUT TYPE="radio" ID="future" NAME="decision_condition" VALUE="future" v-model="decision_condition">
+			<LABEL for="future">Make decisions for me only when I cannot make them for myself.  The physician(s) taking care of me will determine when I lack this ability.</LABEL><BR/>
+
+			<INPUT TYPE="radio" ID="access" NAME="decision_condition" VALUE="access" v-model="decision_condition">
+			<LABEL for="access">Make decisions for me only when I cannot make them for myself. The physician(s) taking care of me will determine when I lack this ability. Starting now, for the purpose of assisting me with my health care plans and decisions, my agent shall have complete access to my medical and mental health records, the authority to share them with others as needed, and the complete ability to communicate with my personal physician(s) and other health care providers, including the ability to require an opinion of my physician as to whether I lack the ability to make decisions for myself.</LABEL><BR/>
+
+			<INPUT TYPE="radio" ID="now" NAME="decision_condition" VALUE="now" v-model="decision_condition">
+			<LABEL for="now">Make decisions for me starting now and continuing after I am no longer able to make them for myself. While I am still able to make my own decisions, I can still do so if I want to.</LABEL>
+		</FORM>
+
+		<BR/>
+
+		<P>The subject of life-sustaining treatment is of particular importance. Life-sustaining treatments may include tube feedings or fluids through a tube, breathing machines, and CPR. In general, in making decisions concerning life-sustaining treatment, your agent is instructed to consider the relief of suffering, the quality as well as the possible extension of your life, and your previously expressed wishes. Your agent will weigh the burdens versus benefits of proposed treatments in making decisions on your behalf.</P>
+		<P>Additional statements concerning the withholding or removal of life-sustaining treatment are described below. These can serve as a guide for your agent when making decisions for you. Ask your physician or health care provider if you have any questions about these statements.</P>
+
+		<FORM>
+			<P>SELECT ONLY ONE STATEMENT BELOW THAT BEST EXPRESSES YOUR WISHES (optional):</P>
+
+			<INPUT TYPE="radio" ID="omit" NAME="prolong" VALUE="omit" v-model="prolong">
+			<LABEL for="omit">(omitted)</LABEL>
+			<BR/>
+
+			<INPUT TYPE="radio" ID="false" NAME="prolong" VALUE=false v-model="prolong">
+			<LABEL for="false">The quality of my life is more important than the length of my life. If I am unconscious and my
+attending physician believes, in accordance with reasonable medical standards, that I will not wake up or recover my ability to think, communicate with my family and friends, and experience my surroundings, I do not want treatments to prolong my life or delay my death, but I do want treatment or care to make me comfortable and to relieve me of pain.</LABEL>
+			<BR/>
+
+			<INPUT TYPE="radio" ID="true" NAME="prolong" VALUE=true v-model="prolong">
+			<LABEL for="true">Staying alive is more important to me, no matter how sick I am, how much I am suffering, the cost of the procedures, or how unlikely my chances for recovery are. I want my life to be prolonged to the greatest extent possible in accordance with reasonable medical standards.</LABEL>
+		</FORM>
+
+		<BR/>
+
+		<P>SPECIFIC LIMITATIONS TO MY AGENT'S DECISION-MAKING AUTHORITY:</P>
+		<P>The above grant of power is intended to be as broad as possible so that your agent will have the authority to make any decision you could make to obtain or terminate any type of health care. If you wish to limit the scope of your agent's powers or prescribe special rules or limit the power to authorize autopsy or dispose of remains, you may do so specifically in this form.</P>
+		<P>(NONE)</P>
+
+		<BR/>
+
+		<P>
+			My signature: _____________________________
+			<BR/><BR/>
+			Today's date: _____________________________
+		</P>
+
+		<BR/>
+
+		<FOOTER></FOOTER>
+
+
+		<P>HAVE YOUR WITNESS AGREE TO WHAT IS WRITTEN BELOW, AND THEN COMPLETE THE SIGNATURE PORTION:</P>
+		<P>
+			I am at least 18 years old. (check one of the options below):<BR/>
+			<INPUT ID="witnessed" TYPE="checkbox" CHECKED onclick='document.getElementById("witnessed").checked = true;'>
+			<LABEL for="witnessed">I saw the principal sign this document, or</LABEL>
+			<BR/>
+			<INPUT ID="did not witness" TYPE="checkbox" onclick='document.getElementById("did not witness").checked = false;'>
+			<LABEL for="did not witness">the principal told me that the signature or mark on the principal signature line is his or hers.</LABEL>
+		</P>
+
+		<P>I am not the agent or successor agent(s) named in this document. I am not related to the principal, the agent, or the successor agent(s) by blood, marriage, or adoption. I am not the principal's physician, advanced practice registered nurse, dentist, podiatric physician, optometrist, psychologist, or a relative of one of those individuals. I am not an owner or operator (or the relative of an owner or operator) of the health care facility where the principal is a patient or resident.</P>
+
+		<BR/>
+
+		<P>
+			Witness printed name: _____________________________
+			<BR/><BR/><BR/>
+			Witness address: __________________________________________________________
+			<BR/><BR/><BR/>
+			Witness signature: _____________________________
+			<BR/><BR/><BR/>
+			Today's date: _____________________________
+		</P>
+
+		<P>Quote from 755 ILCS 45/4-10:</P>
+		<OL type="a" start=3>
+			<LI>
+				The statutory short form power of attorney for health care (the "statutory health care power") authorizes the agent to make any and all health care decisions on behalf of the principal which the principal could make if present and under no disability, subject to any limitations on the granted powers that appear on the face of the form, to be exercised in such manner as the agent deems consistent with the intent and desires of the principal. The agent will be under no duty to exercise granted powers or to assume control of or responsibility for the principal's health care; but when granted powers are exercised, the agent will be required to use due care to act for the benefit of the principal in accordance with the terms of the statutory health care power and will be liable for negligent exercise. The agent may act in person or through others reasonably employed by the agent for that purpose but may not delegate authority to make health care decisions. The agent may sign and deliver all instruments, negotiate and enter into all agreements and do all other acts reasonably necessary to implement the exercise of the powers granted to the agent. Without limiting the generality of the foregoing, the statutory health care power shall include the following powers, subject to any limitations appearing on the face of the form:
+				<OL>
+					<LI>The agent is authorized to give consent to and authorize or refuse, or to withhold or withdraw consent to, any and all types of medical care, treatment or procedures relating to the physical or mental health of the principal, including any medication program, surgical procedures, life-sustaining treatment or provision of food and fluids for the principal.</LI>
+					<LI>The agent is authorized to admit the principal to or discharge the principal from any and all types of hospitals, institutions, homes, residential or nursing facilities, treatment centers and other health care institutions providing personal care or treatment for any type of physical or mental condition. The agent shall have the same right to visit the principal in the hospital or other institution as is granted to a spouse or adult child of the principal, any rule of the institution to the contrary notwithstanding.</LI>
+					<LI>The agent is authorized to contract for any and all types of health care services and facilities in the name of and on behalf of the principal and to bind the principal to pay for all such services and facilities, and to have and exercise those powers over the principal's property as are authorized under the statutory property power, to the extent the agent deems necessary to pay health care costs; and the agent shall not be personally liable for any services or care contracted for on behalf of the principal.</LI>
+					<LI>At the principal's expense and subject to reasonable rules of the health care provider to prevent disruption of the principal's health care, the agent shall have the same right the principal has to examine and copy and consent to disclosure of all the principal's medical records that the agent deems relevant to the exercise of the agent's powers, whether the records relate to mental health or any other medical condition and whether they are in the possession of or maintained by any physician, psychiatrist, psychologist, therapist, hospital, nursing home or other health care provider. The authority under this paragraph (4) applies to any information governed by the Health Insurance Portability and Accountability Act of 1996 ("HIPAA") and regulations thereunder. The agent serves as the principal's personal representative, as that term is defined under HIPAA and regulations thereunder.</LI>
+					<LI>The agent is authorized: to direct that an autopsy be made pursuant to Section 2 of the Autopsy Act; to make a disposition of any part or all of the principal's body pursuant to the Illinois Anatomical Gift Act, as now or hereafter amended; and to direct the disposition of the principal's remains.</LI>
+					<LI>At any time during which there is no executor or administrator appointed for the principal's estate, the agent is authorized to continue to pursue an application or appeal for government benefits if those benefits were applied for during the life of the principal.</LI>
+				</OL>
+			</LI>
+			<LI>A physician may determine that the principal is unable to make health care decisions for himself or herself only if the principal lacks decisional capacity, as that term is defined in Section 10 of the Health Care Surrogate Act.</LI>
+			<LI>If the principal names the agent as a guardian on the statutory short form, and if a court decides that the appointment of a guardian will serve the principal's best interests and welfare, the court shall appoint the agent to serve without bond or security. (Source: P.A. 99-328, eff. 1-1-16; 100-513, eff. 1-1-18.)</LI>
+		</OL>
+		<P>If the principal has a living will under the AIllinois Living Will Act@, as now or hereafter amended, the living will shall not be operative so long as an agent is available who is authorized by a health care agency to deal with the subject of life-sustaining or death-delaying procedures for and on behalf of the principal. (Source: P.A. 85-701.)</P>
+
+		<BR/>
+
+		<FOOTER></FOOTER>
+
+
+		<H2><A v-bind:HREF="`${ bookmark.search }`">link to current state of this form</A></H2>
+		<P>compiled data: {{ documentQueryString }}</P>
+
+	</DIV>
+
+	<SCRIPT>
+		var script = document.createElement('script');
+		if ( location.protocol === "file:" )
+			script.src = 'file:///Users/nate/code/GitHub/developingjoy.github.io/estate-docs/main.js';
+		else if ( location.hostname !== "" )
+			script.src = 'https://developingjoy.github.io/estate-docs/main.js';
+
+		script.type = 'text/javascript';
+
+		document.getElementsByTagName('head')[0].appendChild(script);
+	</SCRIPT>
+
+</BODY>
+
+</HTML>
