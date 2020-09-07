@@ -18,6 +18,10 @@
 		  footer {page-break-after: always;}
 		}
 
+		.uppercase {
+			text-transform: uppercase;
+		}
+
 		input[type="radio"]:checked+label {
 			font-weight: bold;
 		}
@@ -38,7 +42,7 @@
 
 	<DIV id="app">
 
-		<P align=right><INPUT v-model="client.name" PLACEHOLDER="client's full name"></P>
+		<P align=right><INPUT class="uppercase" v-model="client.name" PLACEHOLDER="client's full name"></P>
 
 
 		<H4>NOTICE TO THE INDIVIDUAL SIGNING THE POWER OF ATTORNEY FOR HEALTH CARE</H4>
@@ -139,7 +143,7 @@
 		<P>THIS POWER OF ATTORNEY REVOKES ALL PREVIOUS POWERS OF ATTORNEY FOR HEALTH CARE.<BR/>
 		(You must sign this form and a witness must also sign it before it is valid)</P>
 
-		<P>My name: <INPUT v-model="client.name" PLACEHOLDER="client's full name"><BR/>
+		<P>My name: <INPUT class="uppercase" v-model="client.name" PLACEHOLDER="client's full name"><BR/>
 		My address: <INPUT v-model="client.address" PLACEHOLDER="client's address"><BR/></P>
 
 		<P>
@@ -149,7 +153,7 @@
 				<OPTION value=FALSE></OPTION>
 				<OPTION value=TRUE>my {{ agent.relationship.type }}, </OPTION>
 			</SELECT>
-			<INPUT v-model="agent.name" PLACEHOLDER="agent's full name">
+			<INPUT class="uppercase" v-model="agent.name" PLACEHOLDER="agent's full name">
 			currently residing
 			<SELECT v-model="agent.location.granularity">
 				<OPTION value="address">at</OPTION>
@@ -176,7 +180,7 @@ the person(s) I name below to be my successor health care agent(s). Only one per
 
 		<H4 v-if="successor_agents.length > 0">additional successor agent:</H4>
 		<FORM>
-			<INPUT v-model="additional_successor_agent.name" PLACEHOLDER="successor's full name">
+			<INPUT class="uppercase" v-model="additional_successor_agent.name" PLACEHOLDER="successor's full name">
 			currently residing
 			<SELECT v-model="additional_successor_agent.location.granularity">
 				<OPTION value="address">at</OPTION>
@@ -215,15 +219,30 @@ authority to make any decision I could make to obtain or terminate any type of h
 
 		<FORM>
 			<P>I AUTHORIZE MY AGENT TO:</P>
-
-			<INPUT TYPE="radio" ID="future" NAME="decision_condition" VALUE="future" v-model="decision_condition">
-			<LABEL for="future">Make decisions for me only when I cannot make them for myself.  The physician(s) taking care of me will determine when I lack this ability.</LABEL><BR/>
-
-			<INPUT TYPE="radio" ID="access" NAME="decision_condition" VALUE="access" v-model="decision_condition">
-			<LABEL for="access">Make decisions for me only when I cannot make them for myself. The physician(s) taking care of me will determine when I lack this ability. Starting now, for the purpose of assisting me with my health care plans and decisions, my agent shall have complete access to my medical and mental health records, the authority to share them with others as needed, and the complete ability to communicate with my personal physician(s) and other health care providers, including the ability to require an opinion of my physician as to whether I lack the ability to make decisions for myself.</LABEL><BR/>
-
-			<INPUT TYPE="radio" ID="now" NAME="decision_condition" VALUE="now" v-model="decision_condition">
-			<LABEL for="now">Make decisions for me starting now and continuing after I am no longer able to make them for myself. While I am still able to make my own decisions, I can still do so if I want to.</LABEL>
+			<P><STRONG>initial selection</STRONG></P>
+			<TABLE>
+				<TR>
+					<TD>__________</TD>
+					<TD>
+						<INPUT TYPE="radio" ID="future" NAME="decision_condition" VALUE="future" v-model="decision_condition">
+						<LABEL for="future">Make decisions for me only when I cannot make them for myself.  The physician(s) taking care of me will determine when I lack this ability.</LABEL>
+					</TD>
+				</TR>
+				<TR>
+					<TD>__________</TD>
+					<TD>
+						<INPUT TYPE="radio" ID="access" NAME="decision_condition" VALUE="access" v-model="decision_condition">
+						<LABEL for="access">Make decisions for me only when I cannot make them for myself. The physician(s) taking care of me will determine when I lack this ability. Starting now, for the purpose of assisting me with my health care plans and decisions, my agent shall have complete access to my medical and mental health records, the authority to share them with others as needed, and the complete ability to communicate with my personal physician(s) and other health care providers, including the ability to require an opinion of my physician as to whether I lack the ability to make decisions for myself.</LABEL><BR/>
+					</TD>
+				</TR>
+				<TR>
+					<TD>__________</TD>
+					<TD>
+						<INPUT TYPE="radio" ID="now" NAME="decision_condition" VALUE="now" v-model="decision_condition">
+						<LABEL for="now">Make decisions for me starting now and continuing after I am no longer able to make them for myself. While I am still able to make my own decisions, I can still do so if I want to.</LABEL>
+					</TD>
+				</TR>
+			</TABLE>
 		</FORM>
 
 		<BR/>
@@ -233,18 +252,31 @@ authority to make any decision I could make to obtain or terminate any type of h
 
 		<FORM>
 			<P>SELECT ONLY ONE STATEMENT BELOW THAT BEST EXPRESSES YOUR WISHES (optional):</P>
-
-			<INPUT TYPE="radio" ID="omit" NAME="prolong" VALUE="omit" v-model="prolong">
-			<LABEL for="omit">(omitted)</LABEL>
-			<BR/>
-
-			<INPUT TYPE="radio" ID="false" NAME="prolong" VALUE=false v-model="prolong">
-			<LABEL for="false">The quality of my life is more important than the length of my life. If I am unconscious and my
-attending physician believes, in accordance with reasonable medical standards, that I will not wake up or recover my ability to think, communicate with my family and friends, and experience my surroundings, I do not want treatments to prolong my life or delay my death, but I do want treatment or care to make me comfortable and to relieve me of pain.</LABEL>
-			<BR/>
-
-			<INPUT TYPE="radio" ID="true" NAME="prolong" VALUE=true v-model="prolong">
-			<LABEL for="true">Staying alive is more important to me, no matter how sick I am, how much I am suffering, the cost of the procedures, or how unlikely my chances for recovery are. I want my life to be prolonged to the greatest extent possible in accordance with reasonable medical standards.</LABEL>
+			<P><STRONG>initials</STRONG></P>
+			<TABLE>
+				<TR>
+					<TD></TD>
+					<TD>
+						<INPUT TYPE="radio" ID="omit" NAME="prolong" VALUE="omit" v-model="prolong">
+						<LABEL for="omit">(omitted)</LABEL>
+					</TD>
+				</TR>
+				<TR>
+					<TD>__________</TD>
+					<TD>
+						<INPUT TYPE="radio" ID="false" NAME="prolong" VALUE=false v-model="prolong">
+						<LABEL for="false">The quality of my life is more important than the length of my life. If I am unconscious and my
+			attending physician believes, in accordance with reasonable medical standards, that I will not wake up or recover my ability to think, communicate with my family and friends, and experience my surroundings, I do not want treatments to prolong my life or delay my death, but I do want treatment or care to make me comfortable and to relieve me of pain.</LABEL>
+					</TD>
+				</TR>
+				<TR>
+					<TD>__________</TD>
+					<TD>
+						<INPUT TYPE="radio" ID="true" NAME="prolong" VALUE=true v-model="prolong">
+						<LABEL for="true">Staying alive is more important to me, no matter how sick I am, how much I am suffering, the cost of the procedures, or how unlikely my chances for recovery are. I want my life to be prolonged to the greatest extent possible in accordance with reasonable medical standards.</LABEL>
+					</TD>
+				</TR>
+			</TABLE>
 		</FORM>
 
 		<BR/>
@@ -289,6 +321,8 @@ attending physician believes, in accordance with reasonable medical standards, t
 			<BR/><BR/><BR/>
 			Today's date: _____________________________
 		</P>
+
+		<BR/>
 
 		<P>Quote from 755 ILCS 45/4-10:</P>
 		<OL type="a" start=3>

@@ -27,8 +27,8 @@ let client_data = {
 		},
 		phone_number: null,
 	},
-	decision_condition: params.get("decision_condition") || "future",
-	prolong: params.get("prolong") === "false" ? false : params.get("prolong") === "true" ? true : "omit",
+	decision_condition: params.get("decision_condition"),
+	prolong: params.get("prolong") === "false" ? false : params.get("prolong") === "true" ? true : null,
 	options: {
 		minors: params.get("minors"),
 	},
@@ -38,7 +38,7 @@ let client_data = {
 
 Vue.component('successor-agent', {
 	props: [ 'agent' ],
-	template: `<LI>{{ agent.name }} currently residing <SPAN v-if="agent.location.granularity === 'address'">at</SPAN> <SPAN v-else-if="agent.location.granularity === 'city'">in</SPAN> {{ agent.location.value }} with a last known phone number of {{ agent.phone_number }}.</LI>`
+	template: `<LI><SPAN class="uppercase">{{ agent.name }}</SPAN> currently residing <SPAN v-if="agent.location.granularity === 'address'">at</SPAN> <SPAN v-else-if="agent.location.granularity === 'city'">in</SPAN> {{ agent.location.value }} with a last known phone number of {{ agent.phone_number }}.</LI>`
 });
 
 const app = new Vue({
