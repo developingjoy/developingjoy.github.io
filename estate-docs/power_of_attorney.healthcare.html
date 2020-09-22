@@ -340,7 +340,7 @@ authority to make any decision I could make to obtain or terminate any type of h
 			<LI>A physician may determine that the principal is unable to make health care decisions for himself or herself only if the principal lacks decisional capacity, as that term is defined in Section 10 of the Health Care Surrogate Act.</LI>
 			<LI>If the principal names the agent as a guardian on the statutory short form, and if a court decides that the appointment of a guardian will serve the principal's best interests and welfare, the court shall appoint the agent to serve without bond or security. (Source: P.A. 99-328, eff. 1-1-16; 100-513, eff. 1-1-18.)</LI>
 		</OL>
-		<P>If the principal has a living will under the AIllinois Living Will Act@, as now or hereafter amended, the living will shall not be operative so long as an agent is available who is authorized by a health care agency to deal with the subject of life-sustaining or death-delaying procedures for and on behalf of the principal. (Source: P.A. 85-701.)</P>
+		<P>If the principal has a living will under the "Illinois Living Will Act," as now or hereafter amended, the living will shall not be operative so long as an agent is available who is authorized by a health care agency to deal with the subject of life-sustaining or death-delaying procedures for and on behalf of the principal. (Source: P.A. 85-701.)</P>
 
 		<BR/>
 
@@ -353,15 +353,24 @@ authority to make any decision I could make to obtain or terminate any type of h
 	</DIV>
 
 	<SCRIPT>
-		var script = document.createElement('script');
-		if ( location.protocol === "file:" )
-			script.src = 'file:///Users/nate/code/GitHub/developingjoy.github.io/estate-docs/main.js';
-		else if ( location.hostname !== "" )
-			script.src = 'https://developingjoy.github.io/estate-docs/main.js';
+		function loadScript( scriptPath ) {
+			const script = document.createElement('script');
+			if ( location.protocol === "file:" )
+				script.src = `file:///Users/nate/code/GitHub/${ scriptPath }`;
+			else if ( location.hostname !== "" )
+				script.src = `https://${ scriptPath }`;
 
-		script.type = 'text/javascript';
+			script.type = 'text/javascript';
 
-		document.getElementsByTagName('head')[0].appendChild(script);
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+
+		const basePath = 'developingjoy.github.io/estate-docs/js/';
+		const sharedPath = `${ basePath }shared.js`;
+		const dedicatedPath = `${ basePath }power_of_attorney.healthcare.js`;
+
+		loadScript( sharedPath );
+		loadScript( dedicatedPath );
 	</SCRIPT>
 
 </BODY>
