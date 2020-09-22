@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+	<TITLE>estate planning</TITLE>
+
+	<SCRIPT src="https://cdn.jsdelivr.net/npm/vue"></SCRIPT>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<STYLE>
+		table {
+			border-collapse: collapse; // 1
+			border-spacing: 0;
+		}
+
+		tr {
+			border-top: 1em solid transparent;
+		}
+
+		th {
+			max-width: 500px;
+		}
+
+		td {
+			max-width: 400px;
+		}
+	</STYLE>
+
+</HEAD>
+
+
+<BODY>
+
+	<DIV id="app">
+
+	<H1 ALIGN=center>let's get organized</H1>
+	<P ALIGN=center>to properly evaluate and design your estate plan</P>
+	<BR/>
+
+	<P>
+		first, if you don't mind me asking, are you married? &nbsp;&nbsp;
+		<INPUT id="single" TYPE="radio" NAME="married" VALUE=false v-model="married_input"></INPUT><LABEL for="single"> single</LABEL>&nbsp;&nbsp;
+		<INPUT id="married" TYPE="radio" NAME="married" VALUE=true v-model="married_input"></INPUT><LABEL for="married"> married</LABEL>
+	</P>
+
+	<TABLE>
+		<TR v-if="married">
+			<TH></TH>
+			<TH>you</TH>
+			<TH>and your spouse?</TH>
+		</TR>
+		<TR>
+			<TD>
+				in what year were you born?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="your year of birth" v-model="client.birth_year"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's year of birth" v-model="spouse.birth_year"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				what is your full legal name?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="your full legal name" v-model="client.name"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's full legal name" v-model="spouse.name"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				if different than your full legal name, what name do you use when you sign legal documents?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER='your "signature" name' v-model="client.signature_name"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's &quot;signature&quot; name" v-model="spouse.signature_name"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				what is your home phone number?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="your home phone number" v-model="client.home_phone_number"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's home number" v-model="spouse.home_phone_number"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				what is your mobile phone number?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="your mobile phone number" v-model="client.mobile_phone_number"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's mobile number" v-model="spouse.mobile_phone_number"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				what is your email address?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="your email address" v-model="client.email_address"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="spouse's email address" v-model="spouse.email_address"></INPUT>			
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				what is your postal address?
+			</TD>
+			<TD v-bind:colspan="married ? 2 : 1" v-bind:style="married ? 'text-align:center' : 'text-align:left'">
+				<INPUT TYPE="text" PLACEHOLDER="your postal address" STYLE="width: 290px;" v-model="postal_address"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				in which county do you reside?
+			</TD>
+			<TD v-bind:colspan="married ? 2 : 1" v-bind:style="married ? 'text-align:center' : 'text-align:left'">
+				<INPUT TYPE="text" PLACEHOLDER="county of residence" v-model="county_of_residence"></INPUT>
+			</TD>
+		</TR>
+		<TR v-if="married">
+			<TD>
+				on which date were you married?
+			</TD>
+			<TD colspan="2" style="text-align:center">
+				<INPUT TYPE="text" PLACEHOLDER="date of marriage" v-model="date_of_marriage"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				citizenship
+			</TD>
+			<TD>
+				<SELECT v-model="client.citizen">
+					<OPTION value=true>U.S. citizen</OPTION>
+					<OPTION value=false>not a U.S. citizen</OPTION>
+				</SELECT>
+			</TD>
+			<TD v-if="married">
+				<SELECT v-model="spouse.citizen">
+					<OPTION value=true>U.S. citizen</OPTION>
+					<OPTION value=false>not a U.S. citizen</OPTION>
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				have you ever filed a gift tax return?
+			</TD>
+			<TD style="text-align:center">
+				<SELECT v-model="client.gift_tax">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<SELECT v-model="spouse.gift_tax">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				do you have any funds in a Uniform Transfers to Minors Act (UTMA) account?
+			</TD>
+			<TD style="text-align:center">
+				<SELECT v-model="client.UTMA">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<SELECT v-model="spouse.UTMA">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				do you have any funds in a Section 529 college savings plan account?
+			</TD>
+			<TD style="text-align:center">
+				<SELECT v-model="client.section_529">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<SELECT v-model="spouse.section_529">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				are you in good health?
+			</TD>
+			<TD>
+				<INPUT TYPE="text" v-model="client.health"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" v-model="spouse.health"></INPUT>			
+			</TD>
+		</TR>
+	</TABLE>
+
+	<BR/>
+	<BR/>
+
+	<H2>assets and liabilities</H2>
+	<P>[You can start with check marks in the appropriate boxes.]</P>
+
+	<H3>assets</H3>
+	<TABLE>
+		<TR>
+			<TH>
+				Current Market Value
+			</TH>
+			<TD style="text-align:center" v-if="married">
+				<STRONG>Held as a combined value for both</STRONG><BR/>
+				(indicate if joint tenancy, tenants in<BR/>
+				common, or tenancy by the entirety)
+			</TD>
+			<TH>
+				you
+			</TH>
+			<TH v-if="married">
+				and your spouse?
+			</TH>
+		</TR>
+		<TR>
+			<TD>
+				equity in residence
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.residence.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.residence.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.residence.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				equity in other real esate<BR/>
+				<INPUT TYPE="text" PLACEHOLDER="address" v-model="assets.other_real_estate.address"></INPUT>
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other_real_estate.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other_real_estate.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other_real_estate.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				Cash: Checking, Savings,<BR/>
+				CDs, Money Market
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.cash.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.cash.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.cash.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD v-bind:colspan="married ? 2 : 1">
+				Qualified Retirement Plans:<BR v-if="!married" /> 
+				IRAs, 401(k), Pension Plans<BR/>
+				(note named beneficiaries)
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.retirement_plans.client.value"></INPUT><BR/><BR v-if="!married" />
+				<INPUT TYPE="text" PLACEHOLDER="beneficiaries" v-model="assets.retirement_plans.client.beneficiaries"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.retirement_plans.spouse.value"></INPUT><BR/>
+				<INPUT TYPE="text" PLACEHOLDER="beneficiaries" v-model="assets.retirement_plans.spouse.beneficiaries"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				taxable investment accounts
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.taxable_accounts.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.taxable_accounts.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.taxable_accounts.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				business interests
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD v-bind:colspan="married ? 2 : 1">
+				life insurance: (face amount)<BR/>
+				(note named beneficiaries)
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.life_insurance.client.coverage"></INPUT><BR/>
+				<INPUT TYPE="text" PLACEHOLDER="beneficiaries" v-model="assets.life_insurance.client.beneficiaries"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.life_insurance.spouse.coverage"></INPUT><BR/>
+				<INPUT TYPE="text" PLACEHOLDER="beneficiaries" v-model="assets.life_insurance.spouse.beneficiaries"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD v-bind:colspan="married ? 2 : 1">
+				anticipated inheritance
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.anticipated_inheritance.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.anticipated_inheritance.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				collectibles
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.collectibles.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.collectibles.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.collectibles.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				other
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TH>
+				Total Assets
+			</TH>
+			<TH style="text-align:center" v-if="married">
+				${{ total_assets_combined }}
+			</TH>
+			<TH>
+				${{ total_assets_client }}
+			</TH>
+			<TH v-if="married">
+				${{ total_assets_spouse }}
+			</TH>
+		</TR>
+	</TABLE>
+
+	<BR/>
+
+	<FOOTER></FOOTER>
+
+
+	<H2><A v-bind:HREF="`${ bookmark.search }`">link to current state of this form</A></H2>
+	<P>compiled data: {{ documentQueryString }}</P>
+
+	</DIV>
+
+	<SCRIPT>
+		function loadScript( scriptPath ) {
+			const script = document.createElement('script');
+			if ( location.protocol === "file:" )
+				script.src = `file:///Users/nate/code/GitHub/${ scriptPath }`;
+			else if ( location.hostname !== "" )
+				script.src = `https://${ scriptPath }`;
+
+			script.type = 'text/javascript';
+
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+
+		const basePath = 'developingjoy.github.io/estate-docs/js/';
+		const sharedPath = `${ basePath }shared.js`;
+		const dedicatedPath = `${ basePath }estate_planning.js`;
+
+		loadScript( sharedPath );
+		loadScript( dedicatedPath );
+	</SCRIPT>
+
+</BODY>
+
+</HTML>

@@ -82,7 +82,6 @@ const app = new Vue({
 			this.options.minors && params.append( "minors", this.options.minors );
 
 			return params;
-
 		},
 	},
 	methods: {
