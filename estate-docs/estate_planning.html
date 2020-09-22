@@ -413,7 +413,7 @@
 	</DIV>
 
 	<SCRIPT>
-		function loadScript( scriptPath ) {
+		function loadScriptSync( scriptPath ) {
 			const script = document.createElement('script');
 			if ( location.protocol === "file:" )
 				script.src = `file:///Users/nate/code/GitHub/${ scriptPath }`;
@@ -421,6 +421,7 @@
 				script.src = `https://${ scriptPath }`;
 
 			script.type = 'text/javascript';
+			script.async = false;
 
 			document.getElementsByTagName('head')[0].appendChild(script);
 		}
@@ -429,8 +430,8 @@
 		const sharedPath = `${ basePath }shared.js`;
 		const dedicatedPath = `${ basePath }estate_planning.js`;
 
-		loadScript( sharedPath );
-		loadScript( dedicatedPath );
+		loadScriptSync( sharedPath );
+		loadScriptSync( dedicatedPath );
 	</SCRIPT>
 
 </BODY>

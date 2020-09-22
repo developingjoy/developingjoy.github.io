@@ -353,7 +353,7 @@ authority to make any decision I could make to obtain or terminate any type of h
 	</DIV>
 
 	<SCRIPT>
-		function loadScript( scriptPath ) {
+		function loadScriptSync( scriptPath ) {
 			const script = document.createElement('script');
 			if ( location.protocol === "file:" )
 				script.src = `file:///Users/nate/code/GitHub/${ scriptPath }`;
@@ -361,6 +361,7 @@ authority to make any decision I could make to obtain or terminate any type of h
 				script.src = `https://${ scriptPath }`;
 
 			script.type = 'text/javascript';
+			script.async = false;
 
 			document.getElementsByTagName('head')[0].appendChild(script);
 		}
@@ -369,8 +370,8 @@ authority to make any decision I could make to obtain or terminate any type of h
 		const sharedPath = `${ basePath }shared.js`;
 		const dedicatedPath = `${ basePath }power_of_attorney.healthcare.js`;
 
-		loadScript( sharedPath );
-		loadScript( dedicatedPath );
+		loadScriptSync( sharedPath );
+		loadScriptSync( dedicatedPath );
 	</SCRIPT>
 
 </BODY>
