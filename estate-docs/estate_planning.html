@@ -130,7 +130,11 @@
 				in which county do you reside?
 			</TD>
 			<TD v-bind:colspan="married ? 2 : 1" v-bind:style="married ? 'text-align:center' : 'text-align:left'">
-				<INPUT TYPE="text" PLACEHOLDER="county of residence" v-model="county_of_residence"></INPUT>
+				<SELECT v-model="county_of_residence">
+					<OPTION value="Cook">Cook</OPTION>
+					<OPTION value="DuPage">DuPage</OPTION>
+					<OPTION value="Will">Will</OPTION>
+				</SELECT>
 			</TD>
 		</TR>
 		<TR v-if="married">
@@ -225,6 +229,7 @@
 	<BR/>
 	<BR/>
 
+
 	<H2>assets and liabilities</H2>
 	<P>[You can start with check marks in the appropriate boxes.]</P>
 
@@ -262,8 +267,8 @@
 		</TR>
 		<TR>
 			<TD>
-				equity in other real esate<BR/>
-				<INPUT TYPE="text" PLACEHOLDER="address" v-model="assets.other_real_estate.address"></INPUT>
+				equity in other real estate<BR/>
+				<INPUT TYPE="text" PLACEHOLDER="address" STYLE="width: 290px;" v-model="assets.other_real_estate.address"></INPUT>
 			</TD>
 			<TD style="text-align:center" v-if="married">
 				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.other_real_estate.combined"></INPUT>
@@ -277,8 +282,7 @@
 		</TR>
 		<TR>
 			<TD>
-				Cash: Checking, Savings,<BR/>
-				CDs, Money Market
+				Cash: Checking, Savings, CDs, Money Market
 			</TD>
 			<TD style="text-align:center" v-if="married">
 				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.cash.combined"></INPUT>
@@ -292,12 +296,11 @@
 		</TR>
 		<TR>
 			<TD v-bind:colspan="married ? 2 : 1">
-				Qualified Retirement Plans:<BR v-if="!married" /> 
-				IRAs, 401(k), Pension Plans<BR/>
+				Qualified Retirement Plans: IRAs, 401(k), Pension Plans<BR/>
 				(note named beneficiaries)
 			</TD>
 			<TD>
-				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.retirement_plans.client.value"></INPUT><BR/><BR v-if="!married" />
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="assets.retirement_plans.client.value"></INPUT><BR/>
 				<INPUT TYPE="text" PLACEHOLDER="beneficiaries" v-model="assets.retirement_plans.client.beneficiaries"></INPUT>
 			</TD>
 			<TD v-if="married">
@@ -403,6 +406,27 @@
 	</TABLE>
 
 	<BR/>
+
+
+	<H3>liabilities</H3>
+	<TABLE>
+		<TR>
+			<TH>
+			</TH>
+			<TH v-if="married">
+				joint
+			</TH>
+			<TH>
+				you
+			</TH>
+			<TH v-if="married">
+				your spouse
+			</TH>
+		</TR>
+	</TABLE>
+
+	<BR/>
+
 
 	<FOOTER></FOOTER>
 
