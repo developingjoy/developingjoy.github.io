@@ -230,10 +230,10 @@
 	<BR/>
 
 
-	<H2>assets and liabilities</H2>
+	<H2>Assets and Liabilities</H2>
 	<P>[You can start with check marks in the appropriate boxes.]</P>
 
-	<H3>assets</H3>
+	<H3>Assets</H3>
 	<TABLE>
 		<TR>
 			<TH>
@@ -394,36 +394,146 @@
 				Total Assets
 			</TH>
 			<TH style="text-align:center" v-if="married">
-				${{ total_assets_combined }}
+				${{ total_assets_combined.toLocaleString() }}
 			</TH>
 			<TH>
-				${{ total_assets_client }}
+				${{ total_assets_client.toLocaleString() }}
 			</TH>
 			<TH v-if="married">
-				${{ total_assets_spouse }}
+				${{ total_assets_spouse.toLocaleString() }}
 			</TH>
 		</TR>
-	</TABLE>
-
-	<BR/>
 
 
-	<H3>liabilities</H3>
-	<TABLE>
+		<TR>
+			<TH v-bind:colspan="married ? 4 : 2">
+			</TH>
+		</TR>
+
+
 		<TR>
 			<TH>
+				Liabilities
 			</TH>
 			<TH v-if="married">
 				joint
 			</TH>
-			<TH>
+			<TH v-if="married">
 				you
 			</TH>
 			<TH v-if="married">
 				your spouse
 			</TH>
 		</TR>
+		<TR>
+			<TD>
+				accounts payable
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.accounts_payable.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.accounts_payable.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.accounts_payable.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD v-bind:colspan="married ? 2 : 1">
+				loans against life insurance
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.loans_against_life_insurance.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.loans_against_life_insurance.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				other obligations
+			</TD>
+			<TD style="text-align:center" v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.other.combined"></INPUT>
+			</TD>
+			<TD>
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.other.client"></INPUT>
+			</TD>
+			<TD v-if="married">
+				<INPUT TYPE="text" PLACEHOLDER="$" v-model="liabilities.other.spouse"></INPUT>
+			</TD>
+		</TR>
+		<TR>
+			<TH>
+				Total Liabilities
+			</TH>
+			<TH style="text-align:center" v-if="married">
+				${{ total_liabilities_combined.toLocaleString() }}
+			</TH>
+			<TH>
+				${{ total_liabilities_client.toLocaleString() }}
+			</TH>
+			<TH v-if="married">
+				${{ total_liabilities_spouse.toLocaleString() }}
+			</TH>
+		</TR>
+
+
+		<TR>
+			<TH v-bind:colspan="married ? 4 : 2">
+			</TH>
+		</TR>
+
+
+		<TR v-if="married">
+			<TH>
+			</TH>
+			<TH>
+				combined
+			</TH>
+			<TH>
+				you
+			</TH>
+			<TH>
+				your spouse
+			</TH>
+		</TR>
+		<TR>
+			<TH>
+				Net Estate
+			</TH>
+			<TH style="text-align:center" v-if="married">
+				${{ ( this.total_assets_combined - this.total_liabilities_combined ).toLocaleString() }}
+			</TH>
+			<TH>
+				${{ ( this.total_assets_client - this.total_liabilities_client ).toLocaleString() }}
+			</TH>
+			<TH v-if="married">
+				${{ ( this.total_assets_spouse - this.total_liabilities_spouse ).toLocaleString() }}
+			</TH>
+		</TR>
 	</TABLE>
+
+
+	<BR/>
+	<BR/>
+
+
+	<H2>Financial Management</H2>
+	<P>If necessary, who would you like to manage your financial affairs?</P>
+
+
+	<P>For {{ client.name }}<BR/>
+		<SPAN v-if="married">
+			Spouse
+			<SELECT v-model="agent.client.spouse">
+				<OPTION value=true>yes</OPTION>
+				<OPTION value=false>no</OPTION>
+			</SELECT>
+		</SPAN>
+	</P>
+
 
 	<BR/>
 
