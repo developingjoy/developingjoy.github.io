@@ -94,22 +94,41 @@ let client_data = {
 			spouse: params.get( "collectibles_spouse" ),
 		},
 		other: {
-			combined: params.get( "other_combined" ),
-			client: params.get( "other_client" ),
-			spouse: params.get( "other_spouse" ),
+			combined: params.get( "assets_other_combined" ),
+			client: params.get( "assets_other_client" ),
+			spouse: params.get( "assets_other_spouse" ),
+		},
+	},
+	liabilities: {
+		accounts_payable: {
+			combined: params.get( "accounts_payable_combined" ),
+			client: params.get( "accounts_payable_client" ),
+			spouse: params.get( "accounts_payable_spouse" ),
+		},
+		loans_against_life_insurance: {
+			client: params.get( "loans_against_life_insurance_client" ),
+			spouse: params.get( "loans_against_life_insurance_spouse" ),
+		},
+		other: {
+			combined: params.get( "liabilities_other_combined" ),
+			client: params.get( "liabilities_other_client" ),
+			spouse: params.get( "liabilities_other_spouse" ),
 		},
 	},
 	agent: {
-		relationship: {
-			boolean: params.get("agent_relationship"),
-			type: params.get("agent_relationship_type"),
+		client: {
+			spouse: params.get( "agent_client_spouse" ),
+			relationship: {
+				boolean: params.get("agent_relationship"),
+				type: params.get("agent_relationship_type"),
+			},
+			name: params.get("agent_name"),
+			location: {
+				granularity: params.get("agent_location_granularity") || "address",
+				value: params.get("agent_location"),
+			},
+			phone_number: params.get("agent_phone_number"),
 		},
-		name: params.get("agent_name"),
-		location: {
-			granularity: params.get("agent_location_granularity") || "address",
-			value: params.get("agent_location"),
-		},
-		phone_number: params.get("agent_phone_number"),
 	},
 	successor_agents: JSON.parse( params.get("successor_agents") ) || [],
 	decision_condition: params.get("decision_condition"),
@@ -137,22 +156,27 @@ const app = new Vue({
 				return this.married_input == "true" ? true : this.married_input == "false" ? false : null;
 		},
 		total_assets_combined: function () {
-			return ( +this.assets.cash.combined + +this.assets.residence.combined + +this.assets.other_real_estate.combined + +this.assets.taxable_accounts.combined 
-				+ +this.assets.business_interests.combined + +this.assets.collectibles.combined + +this.assets.other.combined ).toLocaleString()
+			return +this.assets.cash.combined + +this.assets.residence.combined + +this.assets.other_real_estate.combined + +this.assets.taxable_accounts.combined 
+				+ +this.assets.business_interests.combined + +this.assets.collectibles.combined + +this.assets.other.combined
 		},
 		total_assets_client: function () {
-			return (
-				+this.assets.cash.client + +this.assets.residence.client + +this.assets.other_real_estate.client + +this.assets.retirement_plans.client.value
+			return +this.assets.cash.client + +this.assets.residence.client + +this.assets.other_real_estate.client + +this.assets.retirement_plans.client.value
 				+ +this.assets.taxable_accounts.client + +this.assets.business_interests.client + +this.assets.life_insurance.client.coverage
 				+ +this.assets.anticipated_inheritance.client + +this.assets.collectibles.client + +this.assets.other.client
-			).toLocaleString()
 		},
 		total_assets_spouse: function () {
-			return (
-				+this.assets.cash.spouse + +this.assets.residence.spouse + +this.assets.other_real_estate.spouse + +this.assets.retirement_plans.spouse.value
+			return +this.assets.cash.spouse + +this.assets.residence.spouse + +this.assets.other_real_estate.spouse + +this.assets.retirement_plans.spouse.value
 				+ +this.assets.taxable_accounts.spouse + +this.assets.business_interests.spouse + +this.assets.life_insurance.spouse.coverage
 				+ +this.assets.anticipated_inheritance.spouse + +this.assets.collectibles.spouse + +this.assets.other.spouse
-			).toLocaleString()
+		},
+		total_liabilities_combined: function () {
+			return +this.liabilities.accounts_payable.combined + +this.liabilities.other.combined
+		},
+		total_liabilities_client: function () {
+			return +this.liabilities.accounts_payable.client + +this.liabilities.loans_against_life_insurance.client + +this.liabilities.other.client
+		},
+		total_liabilities_spouse: function () {
+			return +this.liabilities.accounts_payable.spouse + +this.liabilities.loans_against_life_insurance.spouse + +this.liabilities.other.spouse
 		},
 		bookmark: function () {
 			const bookmarkLocation = new URL( location.href );
@@ -202,6 +226,8 @@ const app = new Vue({
 
 			this.spouse.health && params.append( "spouse_health", this.spouse.health );
 
+			// assets
+
 			documentIfExists( params, "cash_combined", this.assets.cash.combined );
 			documentIfExists( params, "cash_client", this.assets.cash.client );
 			documentIfExists( params, "cash_spouse", this.assets.cash.spouse );
@@ -240,21 +266,37 @@ const app = new Vue({
 			documentIfExists( params, "collectibles_client", this.assets.collectibles.client );
 			documentIfExists( params, "collectibles_spouse", this.assets.collectibles.spouse );
 
-			documentIfExists( params, "other_combined", this.assets.other.combined );
-			documentIfExists( params, "other_client", this.assets.other.client );
-			documentIfExists( params, "other_spouse", this.assets.other.spouse );
+			documentIfExists( params, "assets_other_combined", this.assets.other.combined );
+			documentIfExists( params, "assets_other_client", this.assets.other.client );
+			documentIfExists( params, "assets_other_spouse", this.assets.other.spouse );
 
-			this.agent.relationship.boolean && params.append( "agent_relationship", this.agent.relationship.boolean );
-			this.agent.relationship.type && params.append( "agent_relationship_type", this.agent.relationship.type );
 
-			this.agent.name && params.append( "agent_name", this.agent_name.name );
+			// liabilities
 
-			if ( this.agent.location.value ) {
-				params.append( "agent_location_granularity", this.agent.location.granularity );
-				params.append( "agent_location", this.agent.location.value );
-			}
+			documentIfExists( params, "accounts_payable_combined", this.liabilities.accounts_payable.combined );
+			documentIfExists( params, "accounts_payable_client", this.liabilities.accounts_payable.client );
+			documentIfExists( params, "accounts_payable_spouse", this.liabilities.accounts_payable.spouse );
 
-			this.agent.phone_number && params.append( "agent_phone_number", this.agent.phone_number );
+			documentIfExists( params, "loans_against_life_insurance_client", this.liabilities.loans_against_life_insurance.client );
+			documentIfExists( params, "loans_against_life_insurance_spouse", this.liabilities.loans_against_life_insurance.spouse );
+
+			documentIfExists( params, "liabilities_other_combined", this.liabilities.other.combined );
+			documentIfExists( params, "liabilities_other_client", this.liabilities.other.client );
+			documentIfExists( params, "liabilities_other_spouse", this.liabilities.other.spouse );
+
+
+			documentIfExists( params, "agent_client_spouse", this.agent.client.spouse );
+			// this.agent.relationship.boolean && params.append( "agent_relationship", this.agent.relationship.boolean );
+			// this.agent.relationship.type && params.append( "agent_relationship_type", this.agent.relationship.type );
+
+			// this.agent.name && params.append( "agent_name", this.agent_name.name );
+
+			// if ( this.agent.location.value ) {
+			// 	params.append( "agent_location_granularity", this.agent.location.granularity );
+			// 	params.append( "agent_location", this.agent.location.value );
+			// }
+
+			// this.agent.phone_number && params.append( "agent_phone_number", this.agent.phone_number );
 
 			this.successor_agents.length > 0 && params.append( "successor_agents", JSON.stringify( this.successor_agents) );
 
