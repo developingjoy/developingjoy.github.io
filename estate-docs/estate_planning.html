@@ -527,12 +527,123 @@
 	<P>For {{ client.name }}<BR/>
 		<SPAN v-if="married">
 			Spouse
-			<SELECT v-model="agent.client.spouse">
+			<SELECT v-model="agents.client.spouse">
 				<OPTION value=true>yes</OPTION>
 				<OPTION value=false>no</OPTION>
 			</SELECT>
 		</SPAN>
 	</P>
+
+	<FORM>
+		<TABLE>
+			<TR>
+				<TH>
+					Fin. Man. for {{ client.name }}
+				</TH>
+				<TH>
+					Full Name
+				</TH>
+				<TH>
+					City, State
+				</TH>
+				<TH>
+					Relationship
+				</TH>
+			</TR>
+			<TR v-if="married && agents.client.spouse == 'true'">
+				<TD>
+				</TD>
+				<TD>
+					{{ spouse.name }}
+				</TD>
+				<TD>
+					{{ postal_address }}
+				</TD>
+				<TD>
+					spouse
+				</TD>
+			</TR>
+			<TR v-for="agent in agents.client.agents" is="successor-agent" v-bind:agent="agent">
+			</TR>
+			<TR>
+				<TD>
+				</TD>
+				<TD>
+					<INPUT v-model="additional_agent.client.name" PLACEHOLDER="successor's full name">
+				</TD>
+				<TD>
+					<INPUT v-model="additional_agent.client.location" PLACEHOLDER="successor's address">
+				</TD>
+				<TD>
+					<INPUT v-model="additional_agent.client.relationship" PLACEHOLDER="relationship">
+				</TD>
+				<TD>
+					<INPUT TYPE="button" VALUE="add" v-on:click="processAdditionalAgent( 'client' )">
+				</TD>
+			</TR>
+		</TABLE>
+	</FORM>
+
+
+	<SPAN v-if="married">
+		<P>For {{ spouse.name }}<BR/>
+				Spouse
+				<SELECT v-model="agents.spouse.spouse">
+					<OPTION value=true>yes</OPTION>
+					<OPTION value=false>no</OPTION>
+				</SELECT>
+		</P>
+
+		<FORM>
+			<TABLE>
+				<TR>
+					<TH>
+						Fin. Man. for {{ spouse.name }}
+					</TH>
+					<TH>
+						Full Name
+					</TH>
+					<TH>
+						City, State
+					</TH>
+					<TH>
+						Relationship
+					</TH>
+				</TR>
+				<TR v-if="agents.spouse.spouse == 'true'">
+					<TD>
+					</TD>
+					<TD>
+						{{ client.name }}
+					</TD>
+					<TD>
+						{{ postal_address }}
+					</TD>
+					<TD>
+						spouse
+					</TD>
+				</TR>
+				<TR v-for="agent in agents.spouse.agents" is="successor-agent" v-bind:agent="agent">
+				</TR>
+				<TR>
+					<TD>
+					</TD>
+					<TD>
+						<INPUT v-model="additional_agent.spouse.name" PLACEHOLDER="successor's full name">
+					</TD>
+					<TD>
+						<INPUT v-model="additional_agent.spouse.location" PLACEHOLDER="successor's address">
+					</TD>
+					<TD>
+						<INPUT v-model="additional_agent.spouse.relationship" PLACEHOLDER="relationship">
+					</TD>
+					<TD>
+						<INPUT TYPE="button" VALUE="add" v-on:click="processAdditionalAgent( 'spouse' )">
+					</TD>
+				</TR>
+			</TABLE>
+		</FORM>
+	</SPAN>
 
 
 	<BR/>
@@ -542,7 +653,7 @@
 
 
 	<H2><A v-bind:HREF="`${ bookmark.search }`">link to current state of this form</A></H2>
-	<P>compiled data: {{ documentQueryString }}</P>
+	<P STYLE="word-wrap: break-word;">compiled data: {{ documentQueryString }}</P>
 
 	</DIV>
 
