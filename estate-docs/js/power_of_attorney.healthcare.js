@@ -1,6 +1,3 @@
-let uri = window.location.search.substring(1);
-let params = new URLSearchParams(uri);
-
 let client_data = {
 	client: {
 		name: params.get("client_name"),
@@ -33,7 +30,6 @@ let client_data = {
 		minors: params.get("minors"),
 	},
 };
-
 
 
 Vue.component('successor-agent', {

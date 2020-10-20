@@ -115,22 +115,28 @@ let client_data = {
 			spouse: params.get( "liabilities_other_spouse" ),
 		},
 	},
-	agent: {
+	agents: {
 		client: {
-			spouse: params.get( "agent_client_spouse" ),
-			relationship: {
-				boolean: params.get("agent_relationship"),
-				type: params.get("agent_relationship_type"),
-			},
-			name: params.get("agent_name"),
-			location: {
-				granularity: params.get("agent_location_granularity") || "address",
-				value: params.get("agent_location"),
-			},
-			phone_number: params.get("agent_phone_number"),
+			spouse: params.get( "agents_client_spouse" ),
+			agents: JSON.parse( params.get( "agents_client" ) ) || [],
+		},
+		spouse: {
+			spouse: params.get( "agents_spouse_spouse" ),
+			agents: JSON.parse( params.get( "agents_spouse" ) ) || [],
 		},
 	},
-	successor_agents: JSON.parse( params.get("successor_agents") ) || [],
+	additional_agent: {
+		client: {
+			name: null,
+			location: null,
+			relationship: null,			
+		},
+		spouse: {
+			name: null,
+			location: null,
+			relationship: null,			
+		},
+	},
 	decision_condition: params.get("decision_condition"),
 	prolong: params.get("prolong") === "false" ? false : params.get("prolong") === "true" ? true : null,
 	options: {
@@ -146,6 +152,25 @@ function documentIfExists( params, key, value ) {
 	} else
 		return 0;
 }
+
+
+Vue.component('successor-agent', {
+	props: [ 'agent', 'order', 'spouse_primary' ],
+	template: `<TR>
+			<TD>
+				choice {{ spouse_primary ? order + 2 : order + 1 }}
+			</TD>
+			<TD>
+				{{ agent.name }}
+			</TD>
+			<TD>
+				{{ agent.location }}
+			</TD>
+			<TD>
+				{{ agent.relationship }}
+			</TD>
+		</TR>`
+});
 
 
 const app = new Vue({
@@ -285,20 +310,11 @@ const app = new Vue({
 			documentIfExists( params, "liabilities_other_spouse", this.liabilities.other.spouse );
 
 
-			documentIfExists( params, "agent_client_spouse", this.agent.client.spouse );
-			// this.agent.relationship.boolean && params.append( "agent_relationship", this.agent.relationship.boolean );
-			// this.agent.relationship.type && params.append( "agent_relationship_type", this.agent.relationship.type );
+			documentIfExists( params, "agents_client_spouse", this.agents.client.spouse );
+			documentIfExists( params, "agents_spouse_spouse", this.agents.spouse.spouse );
 
-			// this.agent.name && params.append( "agent_name", this.agent_name.name );
-
-			// if ( this.agent.location.value ) {
-			// 	params.append( "agent_location_granularity", this.agent.location.granularity );
-			// 	params.append( "agent_location", this.agent.location.value );
-			// }
-
-			// this.agent.phone_number && params.append( "agent_phone_number", this.agent.phone_number );
-
-			this.successor_agents.length > 0 && params.append( "successor_agents", JSON.stringify( this.successor_agents) );
+			this.agents.client.agents.length > 0 && params.append( "agents_client", JSON.stringify( this.agents.client.agents ) );
+			this.married && this.agents.spouse.agents.length > 0 && params.append( "agents_spouse", JSON.stringify( this.agents.spouse.agents ) );
 
 			this.decision_condition && params.append( "decision_condition", this.decision_condition );
 
@@ -310,16 +326,12 @@ const app = new Vue({
 		},
 	},
 	methods: {
-		processSuccessorAgent: function () {
-			// if (this.additional_successor_agent.name != "agent full name" && this.additional_successor_agent.city != "city, state" && this.additional_successor_agent.phone_number != "phone number") {
-			this.successor_agents.push(
+		processAdditionalAgent: function ( individual ) {
+			this.agents[individual].agents.push(
 				{
-					name: this.additional_successor_agent.name,
-					location: {
-						granularity: this.additional_successor_agent.location.granularity,
-						value: this.additional_successor_agent.location.value,
-					},
-					phone_number: this.additional_successor_agent.phone_number,
+					name: this.additional_agent[individual].name,
+					location: this.additional_agent[individual].location,
+					relationship: this.additional_agent[individual].relationship,
 				}
 			);
 
