@@ -158,7 +158,7 @@ Vue.component('successor-agent', {
 	props: [ 'agent', 'order', 'spouse_primary' ],
 	template: `<TR>
 			<TD>
-				{{ spouse_primary ? order + 2 : order + 1 }}
+				choice {{ spouse_primary ? order + 2 : order + 1 }}
 			</TD>
 			<TD>
 				{{ agent.name }}
