@@ -155,9 +155,11 @@ function documentIfExists( params, key, value ) {
 
 
 Vue.component('successor-agent', {
-	props: [ 'agent' ],
+	props: [ 'agent', 'order', 'spouse_primary' ],
 	template: `<TR>
-			<TD></TD>
+			<TD>
+				{{ spouse_primary ? order + 2 : order + 1 }}
+			</TD>
 			<TD>
 				{{ agent.name }}
 			</TD>

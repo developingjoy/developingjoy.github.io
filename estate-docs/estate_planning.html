@@ -551,8 +551,7 @@
 				</TH>
 			</TR>
 			<TR v-if="married && agents.client.spouse == 'true'">
-				<TD>
-				</TD>
+				<TD>1</TD>
 				<TD>
 					{{ spouse.name }}
 				</TD>
@@ -563,11 +562,10 @@
 					spouse
 				</TD>
 			</TR>
-			<TR v-for="agent in agents.client.agents" is="successor-agent" v-bind:agent="agent">
+			<TR v-for="(agent, order) in agents.client.agents" is="successor-agent" v-bind:agent="agent" v-bind:order="order" v-bind:spouse_primary="married && agents.client.spouse == 'true'">
 			</TR>
 			<TR>
-				<TD>
-				</TD>
+				<TD></TD>
 				<TD>
 					<INPUT v-model="additional_agent.client.name" PLACEHOLDER="successor's full name">
 				</TD>
@@ -611,8 +609,7 @@
 					</TH>
 				</TR>
 				<TR v-if="agents.spouse.spouse == 'true'">
-					<TD>
-					</TD>
+					<TD>1</TD>
 					<TD>
 						{{ client.name }}
 					</TD>
@@ -623,11 +620,10 @@
 						spouse
 					</TD>
 				</TR>
-				<TR v-for="agent in agents.spouse.agents" is="successor-agent" v-bind:agent="agent">
+				<TR v-for="(agent, order) in agents.spouse.agents" is="successor-agent" v-bind:agent="agent" v-bind:order="order" v-bind:spouse_primary="agents.spouse.spouse == 'true'">
 				</TR>
 				<TR>
-					<TD>
-					</TD>
+					<TD></TD>
 					<TD>
 						<INPUT v-model="additional_agent.spouse.name" PLACEHOLDER="successor's full name">
 					</TD>
